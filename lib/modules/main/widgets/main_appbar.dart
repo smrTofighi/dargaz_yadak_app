@@ -15,10 +15,10 @@ class MainAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      bottom: const PreferredSize(
-        preferredSize: Size.fromHeight(40),
-        child: SearchBox(),
-      ),
+      // bottom: const PreferredSize(
+      //   preferredSize: Size.fromHeight(40),
+      //   child: SearchBox(),
+      // ),
       elevation: 1,
       backgroundColor: LightColors.scaffoldBG,
       title: Text(

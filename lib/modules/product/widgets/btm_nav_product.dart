@@ -25,7 +25,9 @@ class BtmNavProduct extends StatelessWidget {
             height: 45,
             child: ElevatedButton(
               onPressed: onPressed,
-              child: const Text('افزودن به سبد خرید'),
+              child: const Text('افزودن به سبد خرید', style: const TextStyle(
+                color: Colors.white
+              ),),
             ),
           ),
           Text(

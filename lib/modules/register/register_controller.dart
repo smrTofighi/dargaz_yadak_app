@@ -9,6 +9,7 @@ import 'package:car_soare_parts_app/core/utils/storage_key.dart';
 import 'package:car_soare_parts_app/data/services/dio_service.dart';
 import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -34,7 +35,7 @@ class RegisterController extends GetxController {
 
   checkUserIsLogin() {
     log((GetStorage().read(StorageKeys.userId).toString()));
-    log((GetStorage().read(StorageKeys.token).toString()));
+    debugPrint((GetStorage().read(StorageKeys.token).toString()));
     if (GetStorage().read(StorageKeys.token) == null) {
       Get.offNamed(NamePages.loginPage);
     } else {
@@ -42,7 +43,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  logInUser(String phone, String password) async {
+  logInUser(String phone, String password, BuildContext context) async {
     AppDialogs.loadingDialog();
     Map<String, dynamic> map = {
       ApiKeys.apiKey: ApiConstant.apiKey,
@@ -66,12 +67,12 @@ class RegisterController extends GetxController {
       if (e.response!.data[ApiKeys.status] == -1) {
         String errorMessage = e.response!.data['msg'].toString();
         Get.back();
-        AppSnackBar.showSnackBar('خطا', errorMessage);
+        AppSnackBar.showSnackBarError('خطا', errorMessage, context);
       }
     }
   }
 
-  registerUser(String name, String phone, String password) async {
+  registerUser(String name, String phone, String password, BuildContext context) async {
     AppDialogs.loadingDialog();
     Map<String, dynamic> map = {
       ApiKeys.apiKey: ApiConstant.apiKey,
@@ -84,7 +85,7 @@ class RegisterController extends GetxController {
       var response = await DioService().postMethod(url, map);
       Get.back();
       if (response.data[ApiKeys.status] == 1) {
-        AppSnackBar.showSnackBar('پیغام', 'ثبت نام با موفقیت انجام شد');
+        AppSnackBar.showSnackBarSuccess('پیغام', 'ثبت نام با موفقیت انجام شد', context);
         Get.offNamed(NamePages.loginPage);
       }
       if (response.statusCode == 400) {
@@ -99,7 +100,7 @@ class RegisterController extends GetxController {
         String messageError =
             e.response!.data[ApiKeys.response][ApiKeys.mobile][0];
         Get.back();
-        AppSnackBar.showSnackBar('خطا', messageError);
+        AppSnackBar.showSnackBarError('خطا', messageError, context);
       }
     }
   }

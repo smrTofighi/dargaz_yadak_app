@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 class BtmNavItem extends StatelessWidget {
   const BtmNavItem({
     super.key,
-    
     required this.icon,
-
   });
   final ImageProvider icon;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(4.0),
+      margin: const EdgeInsets.all(8.0),
       child: ImageIcon(
         icon,
         color: LightColors.white,
+        size: 26,
       ),
     );
   }

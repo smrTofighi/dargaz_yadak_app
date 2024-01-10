@@ -49,24 +49,24 @@ class ProductListItem extends StatelessWidget {
                     color: LightColors.primary,
                   ),
                 ),
-                Positioned(
-                  top: 6,
-                  left: 6,
-                  child: GestureDetector(
-                    onTap: onTapLike,
-                    child: Obx(
-                      () => isLiked.value
-                          ? ImageIcon(
-                              AppIcons.heartFill,
-                              color: Colors.red,
-                            )
-                          : ImageIcon(
-                              AppIcons.heart,
-                              color: Colors.grey,
-                            ),
-                    ),
-                  ),
-                )
+                // Positioned(
+                //   top: 6,
+                //   left: 6,
+                //   child: GestureDetector(
+                //     onTap: onTapLike,
+                //     child: Obx(
+                //       () => isLiked.value
+                //           ? ImageIcon(
+                //               AppIcons.heartFill,
+                //               color: Colors.red,
+                //             )
+                //           : ImageIcon(
+                //               AppIcons.heart,
+                //               color: Colors.grey,
+                //             ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
             Padding(

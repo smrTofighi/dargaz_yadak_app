@@ -281,6 +281,21 @@ class $AssetsImagesGen {
   AssetGenImage get bahmanMotor =>
       const AssetGenImage('assets/images/bahmanMotor.png');
 
+  /// File path: assets/images/fp1.jpg
+  AssetGenImage get fp1 => const AssetGenImage('assets/images/fp1.jpg');
+
+  /// File path: assets/images/fp2.jpg
+  AssetGenImage get fp2 => const AssetGenImage('assets/images/fp2.jpg');
+
+  /// File path: assets/images/fp3.jpg
+  AssetGenImage get fp3 => const AssetGenImage('assets/images/fp3.jpg');
+
+  /// File path: assets/images/fp4.jpg
+  AssetGenImage get fp4 => const AssetGenImage('assets/images/fp4.jpg');
+
+  /// File path: assets/images/fp5.jfif
+  String get fp5 => 'assets/images/fp5.jfif';
+
   /// File path: assets/images/logo-new.png
   AssetGenImage get logoNew =>
       const AssetGenImage('assets/images/logo-new.png');
@@ -343,10 +358,15 @@ class $AssetsImagesGen {
   AssetGenImage get tara => const AssetGenImage('assets/images/tara.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
         iranKhodro,
         appstore,
         bahmanMotor,
+        fp1,
+        fp2,
+        fp3,
+        fp4,
+        fp5,
         logoNew,
         logoWhite,
         logo,

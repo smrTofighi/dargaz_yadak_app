@@ -79,7 +79,7 @@ class RegisterPage extends StatelessWidget {
                 (AppDimens.high * 1.5).height,
                 BtmNavRegister(
                   onPressedBigBtn: () {
-                    registerProccess();
+                    registerProccess(context);
                   },
                   onPreesedTextBtn: () {
                     Get.offNamed(NamePages.loginPage);
@@ -96,7 +96,7 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  registerProccess() {
+  registerProccess(BuildContext context) {
     _mobileController.text.isEmpty
         ? _validatePhone.value = true
         : _validatePhone.value = false;
@@ -112,7 +112,7 @@ class RegisterPage extends StatelessWidget {
         _validateName.value == false) {
       RegisterController controller = Get.find<RegisterController>();
       controller.registerUser(_nameController.text, _mobileController.text,
-          _passwordController.text);
+          _passwordController.text, context);
     }
   }
 }

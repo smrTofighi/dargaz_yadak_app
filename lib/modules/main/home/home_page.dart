@@ -54,22 +54,11 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[0].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[0].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[0].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
-
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
+                                     categoryTap(0);
                                     },
                                     colors: [
                                       LightColors.primary,
-                                     LightColors.primary.withOpacity(0.5),
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.carEngine,
                                   ),
@@ -77,22 +66,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[1].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[1].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[1].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(1);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.carSpring,
                                   ),
@@ -100,22 +79,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[2].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[2].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[2].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(2);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.gearbox,
                                   ),
@@ -123,22 +92,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[3].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[3].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[3].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(3);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.chassis,
                                   ),
@@ -152,22 +111,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[4].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[4].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[4].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(4);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.accumulator,
                                   ),
@@ -175,22 +124,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[5].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[5].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[5].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(5);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.ballBearing,
                                   ),
@@ -198,22 +137,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[6].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[6].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[6].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(6);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.timingBelt,
                                   ),
@@ -221,22 +150,12 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[7].title!,
                                     onTap: () {
-                                      ProductListController controller =
-                                          Get.put(ProductListController());
-                                      controller.titleAppBar(
-                                          "دسته بندی ${homeController.productCategoryList[7].title!}");
-                                      Get.toNamed(NamePages.productListPage);
-                                      int id = homeController
-                                          .productCategoryList[7].id!;
-                                      controller.categoryId.value = id;
-                                      controller.isBrand.value = false;
+                                      categoryTap(7);
 
-                                      Get.find<ProductListController>()
-                                          .getProductCategory();
                                     },
                                     colors: [
-                                      Colors.deepPurple,
-                                      Colors.deepPurple.withOpacity(0.5),
+                                      LightColors.primary,
+                                      LightColors.primary.withOpacity(0.5),
                                     ],
                                     icon: AppIcons.application,
                                   ),
@@ -258,6 +177,7 @@ class HomePage extends StatelessWidget {
                                   onTap: () {},
                                 )
                               : ProductItem(
+                                  index: index - 1,
                                   title: list[index - 1].title!,
                                   price: int.parse(list[index - 1].price!),
                                   discount: 20,
@@ -291,6 +211,7 @@ class HomePage extends StatelessWidget {
                                   onTap: () {},
                                 )
                               : ProductItem(
+                                  index: index - 1,
                                   title: list[index - 1].title!,
                                   price: int.parse(list[index - 1].price!),
                                   onTap: () {
@@ -378,5 +299,16 @@ class HomePage extends StatelessWidget {
               ),
             ),
     );
+  }
+
+  categoryTap(int index) {
+    ProductListController controller = Get.put(ProductListController());
+    controller.titleAppBar(
+        "دسته بندی ${homeController.productCategoryList[index].title!}");
+    Get.toNamed(NamePages.productListPage);
+    int id = homeController.productCategoryList[index].id!;
+    controller.categoryIdList.add(id.toString());
+
+    controller.getProductList();
   }
 }

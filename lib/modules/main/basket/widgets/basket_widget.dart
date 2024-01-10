@@ -76,42 +76,72 @@ class BasketWidget extends StatelessWidget {
                 const Spacer(),
                 Container(
                   height: 35,
-                  width: 100,
+                  width: 120,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppDimens.radius),
                     border: Border.all(
-                      color: LightColors.grey,
+                      color: LightColors.primary,
                     ),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+
+
                       GestureDetector(
                         onTap: increase,
-                        child: const Icon(
-                          CupertinoIcons.add,
-                          color: LightColors.primary,
-                          size: 18,
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(AppDimens.radius),
+                              bottomRight: Radius.circular(AppDimens.radius),
+                            ),
+                            color: LightColors.primary
+                          ),
+                          child: const Icon(
+                            CupertinoIcons.add,
+                            color: LightColors.white,
+                            size: 18,
+                          ),
+                        )
+                      ),
+                      SizedBox(
+                        width: 40,
+                        child: Center(
+                          child: Text(
+                            count,
+                            style: LightTextStyles.normal18(LightColors.primary),
+                          ),
                         ),
                       ),
-                      Text(
-                        count,
-                        style: LightTextStyles.normal18(LightColors.primary),
-                      ),
                       GestureDetector(
-                        onTap: decrease,
-                        child: count == '1'
-                            ? ImageIcon(
-                                AppIcons.trash,
-                                color: Colors.red,
-                                size: 18,
-                              )
-                            : const Icon(
-                                CupertinoIcons.minus,
-                                color: LightColors.primary,
-                                size: 18,
-                              ),
+                          onTap: decrease,
+                          child: Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(AppDimens.radius),
+                                  bottomLeft: Radius.circular(AppDimens.radius),
+                                ),
+                                color: LightColors.primary
+                            ),
+                            child:count == '1'
+                                ? ImageIcon(
+                              AppIcons.trash,
+                              color: Colors.white,
+                              size: 18,
+                            )
+                                : const Icon(
+                              CupertinoIcons.minus,
+                              color: LightColors.white,
+                              size: 18,
+                            ),
+                          )
                       ),
+
                     ],
                   ),
                 ),

@@ -35,4 +35,20 @@ class ApiKeys {
   static const String indexImage = 'indexImage';
   static const String response = 'response';
   static const String count = 'count';
+  static const String orders = 'orders';
+  static const String order = 'order';
+  static const String orderId = 'order_id';
+  static const String orderProducts = 'order_products';
+  static const String totalPrice = 'total_price';
+  static const String sendCost = 'send_cost';
+  static const String discountCodeAmount = 'discount_code_amount';
+  static const String invoiceId = 'invoice_id';
+  static const String invoiceStatus = 'invoice_status';
+  static const String price = 'price';
+  static const String email = 'email';
+  static const String paymentType = 'payment_type';
+  static const String province = 'province';
+  static const String sendType = 'send_type';
+  static const String description = 'description';
+  static const String discountCode = 'discount_code';
 }

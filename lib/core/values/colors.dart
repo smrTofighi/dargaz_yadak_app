@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class LightColors {
   LightColors._();
+  static const Color primary = Color(0xff0081AF);
+  static const Color primary4 = Color(0xffdc4319);
   static const Color primary2 = Color(0xffff003c);
-  static const Color primary = Color(0xff011eff);
+  static const Color primary3 = Color(0xff011eff);
   static const Color scaffoldBG = Color(0xffffffff);
   static const Color darkBlueText = Color(0xff091e42);
   static const Color grey = Colors.grey;

@@ -38,7 +38,7 @@ class CategoryPage extends StatelessWidget {
             Get.toNamed(NamePages.productListPage);
             int id = homeController.productCategoryList[index].id!;
             controller.categoryId.value = id;
-            controller.isBrand.value = false;
+
 
             Get.find<ProductListController>().getProductCategory();
           },

@@ -1,9 +1,11 @@
+import 'package:car_soare_parts_app/core/utils/dialogs.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/modules/main/basket/basket_controller.dart';
 import 'package:car_soare_parts_app/modules/main/basket/widgets/basket_widget.dart';
 import 'package:car_soare_parts_app/modules/main/basket/widgets/btm_nav_bar_basket.dart';
 import 'package:car_soare_parts_app/modules/product/controller/product_single_controller.dart';
+import 'package:car_soare_parts_app/modules/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,11 +21,8 @@ class BasketListPage extends StatelessWidget {
           body: SizedBox(
             width: AppDimens.sizeOfDevice(context).width,
             child: Obx(
-              () => basketController.basketList.isEmpty
-                  ? const Center(
-                      child: Text('هیچ محصولی در سبد خرید نیست'),
-                    )
-                  : ListView.builder(
+              () => basketController.basketList.isNotEmpty
+                  ? ListView.builder(
                       itemBuilder: (context, index) {
                         var title = basketController.basketList[index].title!;
                         var count = basketController.basketList[index].count!;
@@ -54,6 +53,7 @@ class BasketListPage extends StatelessWidget {
                               id,
                               newCount.toString(),
                               true,
+                              context
                             );
                           },
                           decrease: () {
@@ -68,6 +68,7 @@ class BasketListPage extends StatelessWidget {
                                 id,
                                 newCount.toString(),
                                 true,
+                                context
                               );
                             }
                           },
@@ -75,6 +76,9 @@ class BasketListPage extends StatelessWidget {
                       },
                       itemCount: basketController.basketList.length,
                       scrollDirection: Axis.vertical,
+                    )
+                  : const Center(
+                      child: Text('هیچ محصولی در سبد خرید نیست'),
                     ),
             ),
           ),

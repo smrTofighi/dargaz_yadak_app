@@ -27,37 +27,36 @@ class ProductModel {
   String? brandId;
   List<dynamic>? properties;
   List<dynamic>? attachedProducts;
-  CategoryModel? category;
+  List<CategoryModel>? categoryList;
 
-  ProductModel({
-    this.id,
-    this.title,
-    this.slug,
-    this.price,
-    this.productCategoriesId,
-    this.discount,
-    this.weight,
-    this.brand,
-    this.timeDelivery,
-    this.userId,
-    this.metaKeywords,
-    this.metaDescription,
-    this.fullDescription,
-    this.status,
-    this.comment,
-    this.abstractDescription,
-    this.minOrder,
-    this.maxOrder,
-    this.quantity,
-    this.shippingCost,
-    this.hits,
-    this.indexImage,
-    this.tax,
-    this.brandId,
-    this.properties,
-    this.attachedProducts,
-    this.category,
-  });
+  ProductModel(
+      {this.id,
+      this.title,
+      this.slug,
+      this.price,
+      this.productCategoriesId,
+      this.discount,
+      this.weight,
+      this.brand,
+      this.timeDelivery,
+      this.userId,
+      this.metaKeywords,
+      this.metaDescription,
+      this.fullDescription,
+      this.status,
+      this.comment,
+      this.abstractDescription,
+      this.minOrder,
+      this.maxOrder,
+      this.quantity,
+      this.shippingCost,
+      this.hits,
+      this.indexImage,
+      this.tax,
+      this.brandId,
+      this.properties,
+      this.attachedProducts,
+      this.categoryList});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -86,6 +85,13 @@ class ProductModel {
     brandId = json["brand_id"];
     properties = json["properties"] ?? [];
     attachedProducts = json["attached_products"] ?? [];
-    //category = json['category'];
+    if (json['category'] == null) {
+      categoryList = [];
+    }
+    else {
+      json['category'].forEach((category) {
+      categoryList!.add(CategoryModel.fromJson(category));
+    });
+    }
   }
 }

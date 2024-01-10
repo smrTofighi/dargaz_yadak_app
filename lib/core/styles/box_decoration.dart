@@ -16,9 +16,11 @@ class AppBoxDecoration {
   );
   //? for List Tile Widget in Profile Page
   static BoxDecoration listTileWidget = BoxDecoration(
-    borderRadius: BorderRadius.circular(AppDimens.small),
-    color: LightColors.containerBGProfilePage,
-  );
+      borderRadius: BorderRadius.circular(AppDimens.small),
+      color: LightColors.containerBGProfilePage,
+      boxShadow: [
+        BoxShadow(color: Colors.black12, blurRadius: 3, spreadRadius: 1)
+      ]);
 
   //? This is for the container in list tile widget
   static BoxDecoration containerInListTileWidget = BoxDecoration(

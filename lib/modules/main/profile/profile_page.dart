@@ -8,6 +8,7 @@ import 'package:car_soare_parts_app/core/values/icons.dart';
 import 'package:car_soare_parts_app/gen/assets.gen.dart';
 import 'package:car_soare_parts_app/modules/main/profile/profile_controller.dart';
 import 'package:car_soare_parts_app/modules/main/profile/widgets/list_tile_widget.dart';
+import 'package:car_soare_parts_app/modules/widgets/loading.dart';
 import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:car_soare_parts_app/core/utils/extensions.dart';
@@ -38,12 +39,14 @@ class ProfilePage extends StatelessWidget {
           ),
           AppDimens.medium.height,
           Obx(
-            () => Text(
-              profileController.userModel.value.fullName!,
-              style: LightTextStyles.bold16(
-                LightColors.blackText,
-              ),
-            ),
+            () => profileController.userModel.value.fullName == null
+                ? LoadingWidget(color: LightColors.primary, size: 20)
+                : Text(
+                    profileController.userModel.value.fullName!,
+                    style: LightTextStyles.bold16(
+                      LightColors.blackText,
+                    ),
+                  ),
           ),
           AppDimens.high.height,
           Container(

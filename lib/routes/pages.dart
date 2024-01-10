@@ -14,4 +14,5 @@ class NamePages {
   static const String homeWidgetListPage = '/HomeWidgetListPage';
   static const String aboutUsPage = '/AboutUsPage';
   static const String filterProductPage = '/FilterProductPage';
+  static const String startPaymentPage = '/StartPaymentPage';
 }

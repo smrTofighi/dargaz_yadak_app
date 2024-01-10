@@ -6,10 +6,18 @@ import 'package:get/get.dart';
 class AppDialogs {
   static loadingDialog() {
     Get.dialog(
-      const Center(
-        child: LoadingWidget(
-          color: LightColors.primary,
-          size: 40,
+      Center(
+        child: Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.white
+          ),
+          child: const LoadingWidget(
+            color: LightColors.primary,
+            size: 40,
+          ),
         ),
       ),
       barrierDismissible: false,

@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 (AppDimens.high * 1.5).height,
                 BtmNavRegister(
                   onPressedBigBtn: () {
-                    loginProccess();
+                    loginProccess(context);
                   },
                   onPreesedTextBtn: () {
                     Get.offNamed(NamePages.registerPage);
@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  loginProccess() {
+  loginProccess(BuildContext context) {
     _mobileController.text.isEmpty
         ? _validatePhone.value = true
         : _validatePhone.value = false;
@@ -104,7 +104,7 @@ class LoginPage extends StatelessWidget {
 
     if (_validatePhone.value == false && _validatePass.value == false) {
       RegisterController controller = Get.find<RegisterController>();
-      controller.logInUser(_mobileController.text, _passwordController.text);
+      controller.logInUser(_mobileController.text, _passwordController.text, context);
       log('true');
     }
   }

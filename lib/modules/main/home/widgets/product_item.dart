@@ -13,19 +13,28 @@ class ProductItem extends StatelessWidget {
     this.oldPrice = 0,
     this.discount = 0,
     this.time = 0,
-    required this.onTap,
+    required this.onTap, required this.index,
   }) : super(key: key);
   final String title;
+  final int index;
   final int price;
   final int oldPrice;
   final int discount;
   final int time;
   final Function() onTap;
   final List images = [
-    Assets.images.p1.path,
-    Assets.images.p2.path,
-    Assets.images.p3.path,
-    Assets.images.p4.path,
+    Assets.images.fp1.path,
+    Assets.images.fp2.path,
+    Assets.images.fp3.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
+    Assets.images.fp4.path,
   ];
   @override
   Widget build(BuildContext context) {
@@ -46,11 +55,11 @@ class ProductItem extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: 150,
+              width: 180,
               height: 150,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: Image.asset(images[2]).image,
+                  image: Image.asset(images[index]).image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -90,7 +99,6 @@ class ProductItem extends StatelessWidget {
                 ),
                 Visibility(
                   visible: discount > 0 ? true : false,
-                
                   child: Container(
                     padding: const EdgeInsets.all(AppDimens.small / 2),
                     decoration: BoxDecoration(
@@ -116,7 +124,6 @@ class ProductItem extends StatelessWidget {
             AppDimens.medium.height,
             Visibility(
               visible: time > 0 ? true : false,
-           
               child: Text(
                 time.toString(),
                 style: LightTextStyles.normal14(Colors.blue),

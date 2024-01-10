@@ -13,8 +13,13 @@ class ApiConstant {
   static const String getProductApi = '${host}api/GetProduct';
   static const String getBasketProductApi = '${host}api/GetBasketProduct';
   static const String updateBasketProductApi = '${host}api/UpdateBasketProduct';
-  static const String registerBasketProductApi = '${host}api/RegisterBasketProduct';
+  static const String registerBasketProductApi =
+      '${host}api/RegisterBasketProduct';
   static const String deleteBasketProductApi = '${host}api/DeleteBasketProduct';
   static const String getProductCategoriesApi =
       '${host}api/GetProductCategories';
+  static const String getOrderListApi = '${host}api/GetOrderList';
+  static const String getOrderApi = '${host}api/GetOrder';
+  static const String startPaymentApi = '${host}api/StartPayment';
+  static const String payment = 'https://zarinpal.com/pg/StartPay/';
 }

@@ -2,6 +2,7 @@ import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/modules/main/brand/widgets/brand_widget.dart';
 import 'package:car_soare_parts_app/modules/main/home/home_controller.dart';
 import 'package:car_soare_parts_app/modules/product/controller/product_list_controller.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,10 +39,12 @@ class BrandPage extends StatelessWidget {
                   Get.put(ProductListController());
               int id = homeController.productBrandList[index].id!;
               controller.brandId.value = id;
-              controller.isBrand.value = true;
+
               controller.titleAppBar(
                   "برند ${homeController.productBrandList[index].title!}");
-              controller.getProductBrand();
+              controller.brandIdList.add(id.toString());
+              controller.getProductList();
+              Get.toNamed(NamePages.productListPage);
             },
           );
         },

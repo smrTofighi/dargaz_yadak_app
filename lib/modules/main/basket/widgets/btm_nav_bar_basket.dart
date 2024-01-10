@@ -4,6 +4,7 @@ import 'package:car_soare_parts_app/core/utils/get_persian_number.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/modules/main/basket/basket_controller.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,14 +20,23 @@ class BtmNavBarBasket extends StatelessWidget {
       decoration: AppBoxDecoration.bottomNavigation,
       child: Row(
         children: [
-          SizedBox(
-            width: AppDimens.sizeOfDevice(context).width / 2.2,
-            height: 45,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text('نهایی کردن سبد خرید'),
-            ),
-          ),
+          Obx(() => SizedBox(
+                width: AppDimens.sizeOfDevice(context).width / 2.2,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: controller.basketList.isEmpty
+                      ? null
+                      : () {
+                          if (controller.basketList.isNotEmpty) {
+                            Get.toNamed(NamePages.startPaymentPage);
+                          }
+                        },
+                  child: const Text(
+                    'ادامه فرایند خرید',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              )),
           const Spacer(),
           Obx(
             () => Text(

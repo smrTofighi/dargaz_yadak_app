@@ -6,6 +6,7 @@ import 'package:car_soare_parts_app/data/models/product_model.dart';
 import 'package:car_soare_parts_app/data/services/dio_service.dart';
 import 'package:car_soare_parts_app/modules/main/basket/basket_controller.dart';
 import 'package:car_soare_parts_app/routes/pages.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProductSingleController extends GetxController {
@@ -34,8 +35,8 @@ class ProductSingleController extends GetxController {
     loading.value = false;
   }
 
-  addProductToBasketList(String id, String count) {
+  addProductToBasketList(String id, String count, BuildContext context) {
     BasketController basketController = Get.find<BasketController>();
-    basketController.registerBasketProduct(id, count);
+    basketController.registerBasketProduct(id, count, context);
   }
 }

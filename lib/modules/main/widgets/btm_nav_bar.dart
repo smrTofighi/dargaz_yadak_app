@@ -1,16 +1,18 @@
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/icons.dart';
+import 'package:car_soare_parts_app/modules/main/basket/basket_controller.dart';
+import 'package:car_soare_parts_app/modules/main/widgets/btm_nav_basket.dart';
 import 'package:car_soare_parts_app/modules/main/widgets/btm_nav_item.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BtmNavBar extends StatelessWidget {
-  const BtmNavBar(
+  BtmNavBar(
       {Key? key, required this.selectedIndex, required this.pageController})
       : super(key: key);
   final RxInt selectedIndex;
-
+  final BasketController basketController = Get.find<BasketController>();
   final PageController pageController;
 
   @override
@@ -27,8 +29,9 @@ class BtmNavBar extends StatelessWidget {
           // BtmNavItem(
           //   icon: AppIcons.grid,
           // ),
-          BtmNavItem(
+          BtmNavBasket(
             icon: AppIcons.shoppingCart,
+            count: RxInt(basketController.basketList.length),
           ),
           BtmNavItem(
             icon: AppIcons.user,
