@@ -2,14 +2,18 @@ import 'package:car_soare_parts_app/core/styles/box_decoration.dart';
 import 'package:car_soare_parts_app/core/styles/text_styles.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
+import 'package:car_soare_parts_app/modules/product/controller/product_single_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:car_soare_parts_app/core/utils/extensions.dart';
+import 'package:get/get.dart';
 
 class BtmNavProduct extends StatelessWidget {
-  const BtmNavProduct({Key? key, required this.price, required this.onPressed})
+  BtmNavProduct({Key? key, required this.price, required this.onPressed})
       : super(key: key);
   final String price;
   final Function() onPressed;
+  final ProductSingleController controller =
+      Get.find<ProductSingleController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,12 +27,23 @@ class BtmNavProduct extends StatelessWidget {
           SizedBox(
             width: AppDimens.sizeOfDevice(context).width / 2.2,
             height: 45,
-            child: ElevatedButton(
-              onPressed: onPressed,
-              child: const Text('افزودن به سبد خرید', style: const TextStyle(
-                color: Colors.white
-              ),),
-            ),
+            child: int.parse(controller.productModel.value.discount!) < 1
+                ? Center(
+                    child: const Text(
+                      'عدم موجودی کافی',
+                      style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  )
+                : ElevatedButton(
+                    onPressed: onPressed,
+                    child: const Text(
+                      'افزودن به سبد خرید',
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
           ),
           Text(
             '${int.parse(price).separateWithComma} تومان',

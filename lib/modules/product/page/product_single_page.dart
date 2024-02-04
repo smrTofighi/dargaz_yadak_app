@@ -11,6 +11,7 @@ import 'package:car_soare_parts_app/core/values/strings.dart';
 import 'package:car_soare_parts_app/modules/product/controller/product_single_controller.dart';
 import 'package:car_soare_parts_app/modules/product/widgets/btm_nav_product.dart';
 import 'package:car_soare_parts_app/modules/widgets/loading.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -148,31 +149,7 @@ class ProductSinglePage extends StatelessWidget {
                             //     ),
                             //   ),
                             // ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(AppDimens.high,
-                                  4, AppDimens.high, AppDimens.high),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'دیدگاه کاربران',
-                                    style: LightTextStyles.normal16(
-                                        LightColors.greyText),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: const ButtonStyle(
-                                        alignment: Alignment.centerRight),
-                                    // child: Text(
-                                    //   "${productController.productModel.value.comment!} نظر",
-                                    // ),
-                                    child: const Text('0 نظر'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const CommentsList(),
+                            CommentsList(),
                             (AppDimens.high * 10).height
                           ],
                         ),
@@ -196,104 +173,113 @@ class ProductSinglePage extends StatelessWidget {
 }
 
 class CommentsList extends StatelessWidget {
-  const CommentsList({
+  CommentsList({
     super.key,
   });
-
+  final ProductSingleController controller =
+      Get.find<ProductSingleController>();
   @override
   Widget build(BuildContext context) {
-    var total = 0;
     return SizedBox(
-      width: AppDimens.sizeOfDevice(context).width,
-      height: total == 0 ? 150 : 200,
-      child: total == 0
-          ? Column(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                Text(
-                  'نظر خود را در مورد کالا بنویسید',
-                  style: const TextStyle(color: Colors.grey, fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                IconButton(
-                  alignment: Alignment.center,
-                  iconSize: 32,
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.add,
-                    size: 32,
-                    color: LightColors.primary,
+        width: AppDimens.sizeOfDevice(context).width,
+        height: controller.commentList.isEmpty ? 150 : 200,
+        child: Obx(
+          () => controller.commentList.isEmpty
+              ? GestureDetector(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'نظر خود را در مورد کالا بنویسید',
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Icon(
+                        Icons.add,
+                        size: 32,
+                        color: LightColors.primary,
+                      ),
+                    ],
                   ),
+                )
+              : ListView.builder(
+                  itemBuilder: (context, index) => index == 3
+                      ? GestureDetector(
+                          onTap: () {
+                            Get.toNamed(NamePages.commentPage);
+                          },
+                          child: SizedBox(
+                            width: AppDimens.sizeOfDevice(context).width * 0.40,
+                            height: 180,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ImageIcon(
+                                  AppIcons.angleLeft,
+                                  color: LightColors.primary,
+                                ),
+                                AppDimens.high.height,
+                                Text(
+                                  'مشاهده همه',
+                                  style: LightTextStyles.bold16(
+                                      LightColors.primary),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            Get.toNamed(NamePages.commentPage);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(AppDimens.medium),
+                            margin: const EdgeInsets.all(AppDimens.small),
+                            width: AppDimens.sizeOfDevice(context).width * 0.75,
+                            height: 180,
+                            decoration: AppBoxDecoration.comment,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.commentList[index].comment,
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: LightTextStyles.normal16(
+                                      LightColors.black),
+                                ),
+                                const Spacer(),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'یک روز پیش',
+                                      style: LightTextStyles.normal12(
+                                          LightColors.greyText),
+                                    ),
+                                    Text(
+                                      controller.commentList[index].fullName,
+                                      style: LightTextStyles.normal12(
+                                          LightColors.greyText),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                  itemCount: 3 + 1,
+                  scrollDirection: Axis.horizontal,
                 ),
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (context, index) => index == 2
-                  ? SizedBox(
-                      width: AppDimens.sizeOfDevice(context).width * 0.40,
-                      height: 180,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: ImageIcon(AppIcons.angleLeft),
-                            color: LightColors.primary,
-                          ),
-                          AppDimens.high.height,
-                          Text(
-                            'مشاهده همه',
-                            style: LightTextStyles.bold16(LightColors.primary),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(
-                      padding: const EdgeInsets.all(AppDimens.medium),
-                      margin: const EdgeInsets.all(AppDimens.small),
-                      width: AppDimens.sizeOfDevice(context).width * 0.75,
-                      height: 180,
-                      decoration: AppBoxDecoration.comment,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'خیلی خوب بود',
-                            style: LightTextStyles.bold16(LightColors.black),
-                          ),
-                          AppDimens.medium.height,
-                          Text(
-                            'پیشنهاد میکنم شما بخرید ممنون بابت پشتیبانی خوبتون',
-                            style: LightTextStyles.normal14(LightColors.black),
-                          ),
-                          const Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'یک روز پیش',
-                                style: LightTextStyles.normal12(
-                                    LightColors.greyText),
-                              ),
-                              Text(
-                                'علی مرتضوی',
-                                style: LightTextStyles.normal12(
-                                    LightColors.greyText),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-              itemCount: total,
-              scrollDirection: Axis.horizontal,
-            ),
-    );
+        ));
   }
 }
 

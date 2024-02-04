@@ -12,6 +12,7 @@ class ApiKeys {
   static const String postalCode = 'postal_code';
   static const String nationalCode = 'national_code';
   static const String provinceId = 'province_id';
+  static const String comment = 'comment';
   static const String user = 'user';
   static const String parentId = 'parent_id';
   static const String productId = 'product_id';

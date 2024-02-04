@@ -68,6 +68,10 @@ class $AssetsIconsGen {
   AssetGenImage get cloudDisabled =>
       const AssetGenImage('assets/icons/cloud-disabled.png');
 
+  /// File path: assets/icons/comment-alt.png
+  AssetGenImage get commentAlt =>
+      const AssetGenImage('assets/icons/comment-alt.png');
+
   /// File path: assets/icons/dollar.png
   AssetGenImage get dollar => const AssetGenImage('assets/icons/dollar.png');
 
@@ -224,6 +228,7 @@ class $AssetsIconsGen {
         chassis,
         clock,
         cloudDisabled,
+        commentAlt,
         dollar,
         filter,
         gearbox,

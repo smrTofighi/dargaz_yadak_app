@@ -23,7 +23,7 @@ class BtmNavRegister extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppDimens.high),
       width: AppDimens.sizeOfDevice(context).width,
-      height: 120,
+      height: 150,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -57,6 +57,19 @@ class BtmNavRegister extends StatelessWidget {
                 ),
               )
             ],
+          ),
+          AppDimens.small.height,
+          Center(
+            child: TextButton(
+              onPressed: onPreesedTextBtn,
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.transparent),
+              ),
+              child: Text(
+                'فراموشی رمز عبور',
+                style: LightTextStyles.normal14(LightColors.primary),
+              ),
+            ),
           )
         ],
       ),

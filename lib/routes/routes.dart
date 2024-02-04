@@ -9,6 +9,7 @@ import 'package:car_soare_parts_app/modules/main/profile/orders/order_list_page.
 import 'package:car_soare_parts_app/modules/main/profile/orders/order_single_page.dart';
 import 'package:car_soare_parts_app/modules/main/profile/user_info_edit_page.dart';
 import 'package:car_soare_parts_app/modules/main/profile/user_info_page.dart';
+import 'package:car_soare_parts_app/modules/product/comment/comment_page.dart';
 import 'package:car_soare_parts_app/modules/product/page/filter_product_page.dart';
 import 'package:car_soare_parts_app/modules/product/page/product_list_page.dart';
 import 'package:car_soare_parts_app/modules/product/page/product_single_page.dart';
@@ -42,6 +43,7 @@ List<GetPage> routes = [
   GetPage(
     name: NamePages.productSinglePage,
     page: () => ProductSinglePage(),
+    //binding: ProductBinding(),
   ),
   GetPage(
     name: NamePages.basketListPage,
@@ -63,7 +65,11 @@ List<GetPage> routes = [
       ]),
   GetPage(
     name: NamePages.orderSinglePage,
-    page: () =>  OrderSinglePage(),
+    page: () => OrderSinglePage(),
+  ),
+  GetPage(
+    name: NamePages.commentPage,
+    page: () => CommentPage(),
   ),
   GetPage(
       name: NamePages.productListPage,

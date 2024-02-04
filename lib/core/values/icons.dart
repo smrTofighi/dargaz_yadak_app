@@ -48,6 +48,7 @@ class AppIcons {
   static ImageProvider cloudDisabled = Image.asset(Assets.icons.cloudDisabled.path).image;
   static ImageProvider layoutFluid = Image.asset(Assets.icons.layoutFluid.path).image;
   static ImageProvider filter = Image.asset(Assets.icons.filter.path).image;
+  static ImageProvider commentAlt = Image.asset(Assets.icons.commentAlt.path).image;
 
 
 

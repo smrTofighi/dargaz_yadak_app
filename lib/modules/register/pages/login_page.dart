@@ -62,6 +62,7 @@ class LoginPage extends StatelessWidget {
                     textInputType: TextInputType.visiblePassword,
                   ),
                 ),
+                
                 (AppDimens.high * 1.5).height,
                 BtmNavRegister(
                   onPressedBigBtn: () {

@@ -14,31 +14,34 @@ class VerticalText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: RotatedBox(
-        quarterTurns: -1,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('مشاهده همه'),
-                AppDimens.medium.width,
-                RotatedBox(
-                  quarterTurns: 5,
-                  child: ImageIcon(
-                    AppIcons.angleLeft,
-                    size: 14,
+      child: GestureDetector(
+        onTap: onTap,
+              child: RotatedBox(
+          quarterTurns: -1,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('مشاهده همه'),
+                  AppDimens.medium.width,
+                  RotatedBox(
+                    quarterTurns: 5,
+                    child: ImageIcon(
+                      AppIcons.angleLeft,
+                      size: 14,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            AppDimens.medium.height,
-            Text(
-             title,
-              style: LightTextStyles.bold22(LightColors.blackText),
-            )
-          ],
+                ],
+              ),
+              AppDimens.medium.height,
+              Text(
+               title,
+                style: LightTextStyles.bold22(LightColors.blackText),
+              )
+            ],
+          ),
         ),
       ),
     );

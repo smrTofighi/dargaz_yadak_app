@@ -114,6 +114,7 @@ class HomeController extends GetxController {
       Assets.images.slide1.path,
       Assets.images.slide2.path,
       Assets.images.slide3.path,
+      Assets.images.slide3.path,
     ];
     Map<String, dynamic> map = {
       ApiKeys.apiKey: ApiConstant.apiKey,

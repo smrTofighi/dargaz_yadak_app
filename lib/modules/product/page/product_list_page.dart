@@ -134,7 +134,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                       gridDelegate:
                                           const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        mainAxisExtent: 310,
+                                        mainAxisExtent: 320,
                                       ),
                                       itemCount: productListController
                                           .productList.length,
@@ -161,6 +161,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                                       .productList[index].id!;
 
                                               controller.getProduct();
+                                              controller.getProductComments();
                                             },
                                             onTapLike: () {},
                                             isLiked: isLiked);

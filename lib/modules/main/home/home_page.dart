@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:car_soare_parts_app/core/styles/text_styles.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
@@ -54,7 +56,7 @@ class HomePage extends StatelessWidget {
                                     title: homeController
                                         .productCategoryList[0].title!,
                                     onTap: () {
-                                     categoryTap(0);
+                                      categoryTap(0);
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -67,7 +69,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[1].title!,
                                     onTap: () {
                                       categoryTap(1);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -80,7 +81,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[2].title!,
                                     onTap: () {
                                       categoryTap(2);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -93,7 +93,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[3].title!,
                                     onTap: () {
                                       categoryTap(3);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -112,7 +111,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[4].title!,
                                     onTap: () {
                                       categoryTap(4);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -125,7 +123,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[5].title!,
                                     onTap: () {
                                       categoryTap(5);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -138,7 +135,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[6].title!,
                                     onTap: () {
                                       categoryTap(6);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -151,7 +147,6 @@ class HomePage extends StatelessWidget {
                                         .productCategoryList[7].title!,
                                     onTap: () {
                                       categoryTap(7);
-
                                     },
                                     colors: [
                                       LightColors.primary,
@@ -189,11 +184,13 @@ class HomePage extends StatelessWidget {
                                         Get.put(ProductSingleController());
                                     productSingleController.productId.value =
                                         list[index - 1].id!;
+                                    productSingleController
+                                        .getProductComments();
                                     productSingleController.getProduct();
                                   },
                                 );
                         },
-                        itemCount: homeController.productList.length + 1,
+                        itemCount: homeController.productList.length - 5,
                         scrollDirection: Axis.horizontal,
                       ),
                     ),
@@ -208,7 +205,9 @@ class HomePage extends StatelessWidget {
                           return index == 0
                               ? VerticalText(
                                   title: 'پر فروش ترین ها',
-                                  onTap: () {},
+                                  onTap: () {
+                                 
+                                  },
                                 )
                               : ProductItem(
                                   index: index - 1,
@@ -220,11 +219,13 @@ class HomePage extends StatelessWidget {
                                         Get.put(ProductSingleController());
                                     productSingleController.productId.value =
                                         list[index - 1].id!;
+                                    productSingleController
+                                        .getProductComments();
                                     productSingleController.getProduct();
                                   },
                                 );
                         },
-                        itemCount: homeController.productList.length + 1,
+                        itemCount: homeController.productList.length - 5,
                         scrollDirection: Axis.horizontal,
                       ),
                     ),
