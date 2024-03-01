@@ -1,37 +1,71 @@
-import 'package:car_soare_parts_app/core/styles/text_styles.dart';
-import 'package:car_soare_parts_app/core/utils/extensions.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
-import 'package:car_soare_parts_app/core/values/icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({ Key? key }) : super(key: key);
+  const SearchBox({
+    super.key,
+    required this.isEnabled,
+    required this.onTap,
+    this.controller,
+    required this.searchValidate, required this.onTapIcon,
+  });
+  final TextEditingController? controller;
+  final bool isEnabled;
+  final Function() onTap;
+  final RxBool searchValidate;
+  final Function() onTapIcon;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      margin: const EdgeInsets.symmetric(horizontal: AppDimens.medium),
-      height: 40,
-      width: AppDimens.sizeOfDevice(context).width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppDimens.radius),
-        color: LightColors.scaffoldBG,
-        border: Border.all(color: Colors.grey.shade200),
-      ),
-      child: Row(
-        children: [
-          ImageIcon(
-            AppIcons.search,
-            size: 20,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 6),
+        margin: const EdgeInsets.symmetric(horizontal: AppDimens.medium),
+        width: AppDimens.sizeOfDevice(context).width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppDimens.radius),
+          color: LightColors.scaffoldBG,
+          border: Border.all(color: Colors.grey.shade300),
+        ),
+        child: Obx(
+          ()=> TextField(
+            controller: controller,
+            enabled: isEnabled,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: onTapIcon,
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.grey.shade500,
+                  size: 18,
+                ),
+              ),
+              errorText: searchValidate.value ? 'این فیلد نباید خالی باشد' : null,
+              hintText: 'جستجو محصولات، برند ها و ... ',
+              hintStyle: TextStyle(color: Colors.grey.shade600),
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+            ),
           ),
-          AppDimens.medium.width,
-          Text(
-            'جستجو محصولات، برند ها و ... ',
-            style: LightTextStyles.normal12(LightColors.blackText),
-          ),
-        ],
+        ),
       ),
     );
   }

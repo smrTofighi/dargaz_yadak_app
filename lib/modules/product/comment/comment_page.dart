@@ -14,11 +14,8 @@ class CommentPage extends StatelessWidget {
   CommentPage({Key? key}) : super(key: key);
   final ProductSingleController productSingleController =
       Get.find<ProductSingleController>();
-  final TextEditingController commentController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final RxBool commentValidate = false.obs;
-  final RxBool emailValidate = false.obs;
-  final RxBool isEmail2 = RxBool(true);
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,12 +73,12 @@ class CommentPage extends StatelessWidget {
                       Obx(
                         () => TextField(
                           cursorColor: LightColors.primary,
-                          controller: emailController,
+                          controller:productSingleController.emailController,
                           onChanged: (value) {
-                            isEmail2.value = isEmail(value);
+                            productSingleController.isEmail2.value = isEmail(value);
                           },
                           decoration: InputDecoration(
-                            errorText: emailValidate.value
+                            errorText: productSingleController.emailValidate.value
                                 ? 'فرمت ایمیل صحیح نمیباشد'
                                 : null,
                             hintText: 'ایمیل',
@@ -105,9 +102,9 @@ class CommentPage extends StatelessWidget {
                         () => TextField(
                           maxLines: 6,
                           cursorColor: LightColors.primary,
-                          controller: commentController,
+                          controller: productSingleController.commentController,
                           decoration: InputDecoration(
-                            errorText: commentValidate.value
+                            errorText: productSingleController.commentValidate.value
                                 ? 'حداقل تعداد کاراکتر باید بیشتر از 10 تا باشد'
                                 : null,
                             hintText: 'نظر خود را بنویسید',
@@ -135,29 +132,29 @@ class CommentPage extends StatelessWidget {
                             height: 45,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (commentController.text.length <= 10) {
-                                  commentValidate(true);
+                                if (productSingleController.commentController.text.length <= 10) {
+                                  productSingleController.commentValidate(true);
                                 } else {
-                                  commentValidate(false);
+                                  productSingleController.commentValidate(false);
                                 }
-                                if (!isEmail2.value ||
-                                    emailController.text.isEmpty) {
-                                  emailValidate(true);
+                                if (!productSingleController.isEmail2.value ||
+                                    productSingleController.emailController.text.isEmpty) {
+                                  productSingleController.emailValidate(true);
                                 } else {
-                                  emailValidate(false);
+                                  productSingleController.emailValidate(false);
                                 }
-                                if (!commentValidate.value &&
-                                    !emailValidate.value) {
+                                if (!productSingleController.commentValidate.value &&
+                                    !productSingleController.emailValidate.value) {
                                   productSingleController.addCommentProduct(
-                                      emailController.text,
-                                      commentController.text,
+                                      productSingleController.emailController.text,
+                                      productSingleController.commentController.text,
                                       context);
 
-                                  commentController.text = '';
-                                  emailController.text = '';
-                                  commentValidate(false);
-                                  emailValidate(false);
-                                  isEmail2(true);
+                                  productSingleController.commentController.text = '';
+                                  productSingleController.emailController.text = '';
+                                  productSingleController.commentValidate(false);
+                                  productSingleController.emailValidate(false);
+                                  productSingleController.isEmail2(true);
                                 }
                               },
                               child: const Text(
@@ -172,11 +169,11 @@ class CommentPage extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 Get.back();
-                                commentController.text = '';
-                                emailController.text = '';
-                                commentValidate(false);
-                                emailValidate(false);
-                                isEmail2(true);
+                                productSingleController.commentController.text = '';
+                                productSingleController.emailController.text = '';
+                                productSingleController.commentValidate(false);
+                                productSingleController.emailValidate(false);
+                                productSingleController.isEmail2(true);
                               },
                               style: const ButtonStyle(
                                   backgroundColor:

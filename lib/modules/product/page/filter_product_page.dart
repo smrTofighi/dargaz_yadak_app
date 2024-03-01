@@ -4,6 +4,7 @@ import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/core/values/icons.dart';
 import 'package:car_soare_parts_app/modules/main/home/home_controller.dart';
 import 'package:car_soare_parts_app/modules/product/controller/product_list_controller.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,10 +23,10 @@ class FilterProductPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: LightColors.primary,
+          elevation: 0,
           title: Text(
             'فیلتر محصولات',
-            style: LightTextStyles.normal16(LightColors.whiteText),
+            style: LightTextStyles.normal16(LightColors.primary),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -35,6 +36,7 @@ class FilterProductPage extends StatelessWidget {
             icon: ImageIcon(
               AppIcons.angleRight,
               size: 20,
+              color: LightColors.primary,
             ),
           ),
         ),
@@ -220,8 +222,14 @@ class FilterProductPage extends StatelessWidget {
                   width: AppDimens.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('اعمال تغییرات'),
+                    onPressed: () {
+                      productListController.getProductList();
+                      Get.offNamed(NamePages.productListPage);
+                    },
+                    child: const Text(
+                      'اعمال تغییرات',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],

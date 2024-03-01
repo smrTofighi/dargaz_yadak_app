@@ -14,6 +14,7 @@ import 'package:car_soare_parts_app/modules/widgets/loading.dart';
 import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:validators/validators.dart';
 
 class ProductSinglePage extends StatelessWidget {
   ProductSinglePage({Key? key}) : super(key: key);
@@ -186,7 +187,9 @@ class CommentsList extends StatelessWidget {
         child: Obx(
           () => controller.commentList.isEmpty
               ? GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    commentBottomSheet(context);
+                  },
                   child: Column(
                     children: [
                       const SizedBox(
@@ -280,6 +283,140 @@ class CommentsList extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                 ),
         ));
+  }
+
+  commentBottomSheet(context) {
+    Get.bottomSheet(
+        isDismissible: false,
+        Container(
+          padding: const EdgeInsets.all(AppDimens.small),
+          width: AppDimens.sizeOfDevice(context).width,
+          height: AppDimens.sizeOfDevice(context).height * 0.6,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(AppDimens.radius),
+                topRight: Radius.circular(AppDimens.radius),
+              )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'افزودن نظر جدید',
+                style: LightTextStyles.normal14(LightColors.primary),
+              ),
+              Obx(
+                () => TextField(
+                  cursorColor: LightColors.primary,
+                  controller: controller.emailController,
+                  onChanged: (value) {
+                    controller.isEmail2.value = isEmail(value);
+                  },
+                  decoration: InputDecoration(
+                    errorText: controller.emailValidate.value
+                        ? 'فرمت ایمیل صحیح نمیباشد'
+                        : null,
+                    hintText: 'ایمیل',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(AppDimens.radius),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(AppDimens.radius),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppDimens.radius),
+                        borderSide: BorderSide(color: LightColors.primary)),
+                  ),
+                ),
+              ),
+              Obx(
+                () => TextField(
+                  maxLines: 6,
+                  cursorColor: LightColors.primary,
+                  controller: controller.commentController,
+                  decoration: InputDecoration(
+                    errorText: controller.commentValidate.value
+                        ? 'حداقل تعداد کاراکتر باید بیشتر از 10 تا باشد'
+                        : null,
+                    hintText: 'نظر خود را بنویسید',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(AppDimens.radius),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(AppDimens.radius),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppDimens.radius),
+                        borderSide: BorderSide(color: LightColors.primary)),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: AppDimens.sizeOfDevice(context).width / 2.3,
+                    height: 45,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (controller.commentController.text.length <= 10) {
+                          controller.commentValidate(true);
+                        } else {
+                          controller.commentValidate(false);
+                        }
+                        if (!controller.isEmail2.value ||
+                            controller.emailController.text.isEmpty) {
+                          controller.emailValidate(true);
+                        } else {
+                          controller.emailValidate(false);
+                        }
+                        if (!controller.commentValidate.value &&
+                            !controller.emailValidate.value) {
+                          controller.addCommentProduct(
+                              controller.emailController.text,
+                              controller.commentController.text,
+                              context);
+
+                          controller.commentController.text = '';
+                          controller.emailController.text = '';
+                          controller.commentValidate(false);
+                          controller.emailValidate(false);
+                          controller.isEmail2(true);
+                        }
+                      },
+                      child: const Text(
+                        'ثبت',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppDimens.sizeOfDevice(context).width / 2.3,
+                    height: 45,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                        controller.commentController.text = '';
+                        controller.emailController.text = '';
+                        controller.commentValidate(false);
+                        controller.emailValidate(false);
+                        controller.isEmail2(true);
+                      },
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.red)),
+                      child: const Text(
+                        'لغو',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.transparent);
   }
 }
 

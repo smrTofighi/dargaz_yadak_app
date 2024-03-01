@@ -1,3 +1,4 @@
+import 'package:car_soare_parts_app/bindings.dart';
 import 'package:car_soare_parts_app/modules/main/basket/basket_list_page.dart';
 import 'package:car_soare_parts_app/modules/main/basket/start_payment_page.dart';
 import 'package:car_soare_parts_app/modules/main/drawer/about_us_page.dart';
@@ -16,6 +17,7 @@ import 'package:car_soare_parts_app/modules/product/page/product_single_page.dar
 import 'package:car_soare_parts_app/modules/product/product_binding.dart';
 import 'package:car_soare_parts_app/modules/register/pages/login_page.dart';
 import 'package:car_soare_parts_app/modules/register/pages/register_page.dart';
+import 'package:car_soare_parts_app/modules/search/search_page.dart';
 import 'package:car_soare_parts_app/modules/splash/splash_page.dart';
 import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:get/get.dart';
@@ -52,6 +54,11 @@ List<GetPage> routes = [
   GetPage(
     name: NamePages.userInfoPage,
     page: () => UserInfoPage(),
+  ),
+    GetPage(
+    name: NamePages.searchPage,
+    page: () => SearchPage(),
+    binding: SearchBinding()
   ),
   GetPage(
     name: NamePages.userInfoEditPage,

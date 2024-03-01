@@ -3,22 +3,32 @@ import 'package:car_soare_parts_app/core/values/icons.dart';
 import 'package:car_soare_parts_app/core/values/strings.dart';
 import 'package:car_soare_parts_app/gen/fonts.gen.dart';
 import 'package:car_soare_parts_app/modules/main/widgets/search_box.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainAppBar extends StatelessWidget {
-  const MainAppBar(
-      {Key? key, required this.ourKey, required this.selectedIndex})
-      : super(key: key);
+   MainAppBar(
+      {super.key, required this.ourKey, required this.selectedIndex});
   final GlobalKey<ScaffoldState> ourKey;
   final int selectedIndex;
-
+  final RxBool searchValidate = RxBool(false);
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      // bottom: const PreferredSize(
-      //   preferredSize: Size.fromHeight(40),
-      //   child: SearchBox(),
-      // ),
+      bottom:  PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: SearchBox(
+          searchValidate: searchValidate,
+          isEnabled: false,
+          onTap: (){
+            Get.toNamed(NamePages.searchPage);
+          },
+          onTapIcon: (){
+            Get.toNamed(NamePages.searchPage);
+          },
+        ),
+      ),
       elevation: 1,
       backgroundColor: LightColors.scaffoldBG,
       title: Text(
@@ -33,7 +43,7 @@ class MainAppBar extends StatelessWidget {
           color: LightColors.primary,
           fontWeight: FontWeight.bold,
           fontFamily: FontFamily.fanavari,
-          fontSize: 22,
+          fontSize: 24,
         ),
       ),
       automaticallyImplyLeading: false,

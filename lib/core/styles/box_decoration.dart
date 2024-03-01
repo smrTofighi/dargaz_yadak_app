@@ -7,8 +7,13 @@ class AppBoxDecoration {
     borderRadius: BorderRadius.circular(
       AppDimens.radius,
     ),
+    
     color: Colors.grey.shade100.withOpacity(0.5),
     border: Border.all(color: Colors.black26),
+  );
+  static BoxDecoration shimmer = BoxDecoration(
+    borderRadius: BorderRadius.circular(AppDimens.radius),
+    color: LightColors.shimmerColor
   );
   static BoxDecoration imageOfProductItemWidget = BoxDecoration(
     borderRadius: BorderRadius.circular(AppDimens.radius),

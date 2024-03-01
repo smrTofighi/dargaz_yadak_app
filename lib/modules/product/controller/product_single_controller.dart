@@ -17,6 +17,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProductSingleController extends GetxController {
+    final TextEditingController commentController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+    final RxBool commentValidate = false.obs;
+  final RxBool emailValidate = false.obs;
+  final RxBool isEmail2 = RxBool(true);
   Rx<ProductModel> productModel = ProductModel().obs;
   Rx<ImageModel> imageModel = ImageModel().obs;
   Rx<CategoryModel> categoryModel = CategoryModel().obs;
@@ -30,7 +35,7 @@ class ProductSingleController extends GetxController {
     Map<String, dynamic> map = {
       ApiKeys.apiKey: ApiConstant.apiKey,
       //TODO" remeber use productId
-      ApiKeys.productId: 277
+      ApiKeys.productId: productId
     };
 
     try {
@@ -44,6 +49,8 @@ class ProductSingleController extends GetxController {
       log(e.toString());
     }
   }
+
+ 
 
   getProduct() async {
     loading.value = true;

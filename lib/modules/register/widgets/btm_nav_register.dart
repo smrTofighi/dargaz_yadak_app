@@ -23,7 +23,7 @@ class BtmNavRegister extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: AppDimens.high),
       width: AppDimens.sizeOfDevice(context).width,
-      height: 150,
+     
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [

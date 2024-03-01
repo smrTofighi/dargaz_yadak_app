@@ -16,6 +16,7 @@ class LightColors {
   static const Color black = Colors.black;
   static const Color loading = primary;
   static const Color containerBGProfilePage = Color(0xFFf7f6f9);
+  static Color shimmerColor = Colors.grey.shade500;
 }
 
 class GradientColors {

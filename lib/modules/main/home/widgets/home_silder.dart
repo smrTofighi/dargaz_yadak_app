@@ -20,14 +20,7 @@ class HomeSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => homeController.widgetList.isEmpty
-          ? SizedBox(
-              height: AppDimens.sizeOfDevice(context).height * 0.2,
-              child: const Center(
-                child: LoadingWidget(color: LightColors.primary, size: 30),
-              ),
-            )
-          : GestureDetector(
+      () =>  GestureDetector(
               onTap: () {
                 homeController.getHomeWidgetList(
                     homeController.homeWidgetList[dotsIndex.value].id!);

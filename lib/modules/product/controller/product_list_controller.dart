@@ -52,8 +52,8 @@ class ProductListController extends GetxController {
             : brandIdList.length == 1
                 ? brandIdList[0]
                 : brandIdList,
-        ApiKeys.minPrice: '0',
-        ApiKeys.maxPrice: '1000000000',
+        ApiKeys.minPrice: minPrice.value.toString(),
+        ApiKeys.maxPrice: maxPrice.value.toString(),
         ApiKeys.sortBy: 'id-asc',
         ApiKeys.page: page.value.toString()
       };
@@ -61,13 +61,12 @@ class ProductListController extends GetxController {
         var response = await DioService().postMethod(url, map);
         if (response.data[ApiKeys.status] == 1) {
           response.data[ApiKeys.productResponse][ApiKeys.products]
-                .forEach((product) {
-              productList.add(ProductModel.fromJson(product));
-            });
+              .forEach((product) {
+            productList.add(ProductModel.fromJson(product));
+          });
           if (page.value >= maxPage.value) {
             hasNextPage(false);
-          } 
-          
+          }
         }
       } on DioException catch (error) {}
 
@@ -94,14 +93,22 @@ class ProductListController extends GetxController {
           page(page.value + 1);
           Map<String, dynamic> map2 = {
             ApiKeys.apiKey: ApiConstant.apiKey,
-            ApiKeys.categories: categoryId.value.toString(),
-            ApiKeys.brands: null,
-            ApiKeys.minPrice: '0',
-            ApiKeys.maxPrice: '1000000000',
+            ApiKeys.categories: categoryIdList.isEmpty
+            ? null
+            : categoryIdList.length == 1
+                ? categoryIdList[0]
+                : categoryIdList,
+        ApiKeys.brands: brandIdList.isEmpty
+            ? null
+            : brandIdList.length == 1
+                ? brandIdList[0]
+                : brandIdList,
+            ApiKeys.minPrice: minPrice.value.toString(),
+            ApiKeys.maxPrice: maxPrice.value.toString(),
             ApiKeys.sortBy: 'id-asc',
             ApiKeys.page: page.value.toString()
           };
-          fetchPage(page.value, map);
+          fetchPage(page.value, map2);
           debugPrint('false');
           pagingController.appendPage(list, page.value);
         }
@@ -113,6 +120,7 @@ class ProductListController extends GetxController {
 
   getProductList() async {
     loading.value = true;
+    productList.clear();
     String url = ApiConstant.getProductListApi;
     Map<String, dynamic> map = {
       ApiKeys.apiKey: ApiConstant.apiKey,
@@ -126,8 +134,8 @@ class ProductListController extends GetxController {
           : brandIdList.length == 1
               ? brandIdList[0]
               : brandIdList,
-      ApiKeys.minPrice: '0',
-      ApiKeys.maxPrice: '1000000000',
+      ApiKeys.minPrice: minPrice.value.toString(),
+      ApiKeys.maxPrice: maxPrice.value.toString(),
       ApiKeys.sortBy: 'id-asc',
       ApiKeys.page: page.value.toString()
     };

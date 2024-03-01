@@ -6,6 +6,7 @@ import 'package:car_soare_parts_app/modules/product/controller/product_list_cont
 import 'package:car_soare_parts_app/modules/product/controller/product_single_controller.dart';
 import 'package:car_soare_parts_app/modules/product/widgets/product_list_item.dart';
 import 'package:car_soare_parts_app/modules/widgets/loading.dart';
+import 'package:car_soare_parts_app/routes/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,7 +50,7 @@ class _ProductListPageState extends State<ProductListPage> {
             actions: [
               IconButton(
                 onPressed: () {
-                  //Get.toNamed(NamePages.filterProductPage);
+                  Get.toNamed(NamePages.filterProductPage);
                 },
                 icon: ImageIcon(
                   AppIcons.filter,
@@ -145,13 +146,13 @@ class _ProductListPageState extends State<ProductListPage> {
                                         var price = productListController
                                             .productList[index].price!;
                                         RxBool isLiked = true.obs;
-
+                                        var image = productListController.productList[index].image!;
                                         //? that widget was return
                                         return ProductListItem(
                                             title: title,
                                             price: price,
                                             rating: '4.8',
-                                            image: '',
+                                            image: image,
                                             onTap: () {
                                               ProductSingleController
                                                   controller = Get.put(

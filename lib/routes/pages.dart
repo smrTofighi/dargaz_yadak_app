@@ -16,4 +16,5 @@ class NamePages {
   static const String filterProductPage = '/FilterProductPage';
   static const String startPaymentPage = '/StartPaymentPage';
   static const String commentPage = '/CommentPage';
+  static const String searchPage = '/SearchPage';
 }

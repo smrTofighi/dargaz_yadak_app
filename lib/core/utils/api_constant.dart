@@ -23,5 +23,6 @@ class ApiConstant {
   static const String startPaymentApi = '${host}api/StartPayment';
   static const String getProductComments = '${host}api/GetProductComments';
   static const String submitProductComment = '${host}api/SubmitProductComment';
+  static const String searchProductApi = '${host}api/SearchProduct';
   static const String payment = 'https://zarinpal.com/pg/StartPay/';
 }

@@ -31,7 +31,7 @@ class HomeController extends GetxController {
     getHomeWidget();
     getProductCategories();
     getProductBrand();
-    Future.delayed(const Duration(seconds: 3))
+    Future.delayed(const Duration(seconds: 1))
         .then((value) => loading.value = false);
   }
 

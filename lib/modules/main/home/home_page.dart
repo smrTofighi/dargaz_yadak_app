@@ -5,6 +5,9 @@ import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/core/values/icons.dart';
 import 'package:car_soare_parts_app/core/values/strings.dart';
+import 'package:car_soare_parts_app/core/widgets/category_shimmer.dart';
+import 'package:car_soare_parts_app/core/widgets/home_product_shimmer.dart';
+import 'package:car_soare_parts_app/core/widgets/slider_shimmer.dart';
 import 'package:car_soare_parts_app/modules/main/home/home_controller.dart';
 import 'package:car_soare_parts_app/modules/main/home/widgets/category_widget.dart';
 import 'package:car_soare_parts_app/modules/main/home/widgets/home_silder.dart';
@@ -19,34 +22,179 @@ import 'package:get/get.dart';
 import 'package:car_soare_parts_app/core/utils/extensions.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   final HomeController homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => homeController.loading.value
-          ? const Center(
-              child: LoadingWidget(
-                color: LightColors.primary,
-                size: 60,
-              ),
-            )
-          : SingleChildScrollView(
+      () =>  SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HomeSlider(),
+                  homeController.widgetList.isEmpty ? const SliderShimmer() : HomeSlider(),
                   AppDimens.medium.height,
-                  Obx(
-                    () => homeController.productCategoryList.isEmpty
-                        ? const Center(
-                            child: LoadingWidget(
-                                color: LightColors.primary, size: 30),
-                          )
-                        : Column(
+                  
+                 homeController.productCategoryList.isEmpty
+                        ? const CategoryShimmerList()
+                        : CategoryList(),
+                  
+                  AppDimens.medium.height,
+                  SizedBox(
+                    height: 330,
+                    child: Obx(
+                      () => homeController.productList.isEmpty ?   const HomeProductListShimmer() : ListView.builder(
+                        itemBuilder: (context, index) {
+                          var list = homeController.productList;
+                          return index == 0
+                              ? VerticalText(
+                                  title: AppStrings.amazing,
+                                  onTap: () {},
+                                )
+                              : ProductItem(
+                                  image: list[index].image!,
+                                  title: list[index - 1].title!,
+                                  price: int.parse(list[index - 1].price!),
+                                  discount: 20,
+                                  oldPrice: int.parse(list[index - 1].price!),
+                                  time: 2000,
+
+                                  onTap: () {
+                                    ProductSingleController
+                                        productSingleController =
+                                        Get.put(ProductSingleController());
+                                    productSingleController.productId.value =
+                                        list[index - 1].id!;
+                                    productSingleController
+                                        .getProductComments();
+                                    productSingleController.getProduct();
+                                  },
+                                );
+                        },
+                        itemCount: homeController.productList.length - 5,
+                        scrollDirection: Axis.horizontal,
+                      ),
+                    ),
+                  ),
+                  AppDimens.medium.height,
+                
+                  SizedBox(
+                    height: 285,
+                    child: Obx(
+                      () =>homeController.productList.isEmpty ?   const HomeProductListShimmer() :  ListView.builder(
+                        itemBuilder: (context, index) {
+                          var list = homeController.productList;
+                          return index == 0
+                              ? VerticalText(
+                                  title: 'پر فروش ترین ها',
+                                  onTap: () {
+                                 
+                                  },
+                                )
+                              : ProductItem(
+                                  image: list[index].image!,
+                                  title: list[index - 1].title!,
+                                  price: int.parse(list[index - 1].price!),
+                                  onTap: () {
+                                    ProductSingleController
+                                        productSingleController =
+                                        Get.put(ProductSingleController());
+                                    productSingleController.productId.value =
+                                        list[index - 1].id!;
+                                    productSingleController
+                                        .getProductComments();
+                                    productSingleController.getProduct();
+                                  },
+                                );
+                        },
+                        itemCount: homeController.productList.length - 5,
+                        scrollDirection: Axis.horizontal,
+                      ),
+                    ),
+                  ),
+                  AppDimens.high.height,
+                  SizedBox(
+                    height: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            ImageIcon(
+                              AppIcons.timeTwentyFour,
+                              color: LightColors.primary,
+                            ),
+                            AppDimens.small.height,
+                            Text(
+                              'پشتیبانی آنلاین',
+                              style:
+                                  LightTextStyles.normal16(LightColors.primary),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            ImageIcon(
+                              AppIcons.truckSide,
+                              color: LightColors.primary,
+                            ),
+                            AppDimens.small.height,
+                            Text(
+                              'ارسال رایگان',
+                              style:
+                                  LightTextStyles.normal16(LightColors.primary),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            ImageIcon(
+                              AppIcons.dollar,
+                              color: LightColors.primary,
+                            ),
+                            AppDimens.small.height,
+                            Text(
+                              'بازگشت وجه',
+                              style:
+                                  LightTextStyles.normal16(LightColors.primary),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            ImageIcon(
+                              AppIcons.shieldCheck,
+                              color: LightColors.primary,
+                            ),
+                            AppDimens.small.height,
+                            Text(
+                              'پرداخت امن',
+                              style:
+                                  LightTextStyles.normal16(LightColors.primary),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  (AppDimens.high * 5).height
+                ],
+              ),
+            ),
+    );
+  }
+
+  
+}
+
+class CategoryList extends StatelessWidget {
+   CategoryList({super.key});
+ final HomeController homeController = Get.find<HomeController>();
+  @override
+  Widget build(BuildContext context) {
+    return Column(
                             children: [
                               Row(
                                 mainAxisAlignment:
@@ -157,151 +305,8 @@ class HomePage extends StatelessWidget {
                                 ],
                               ),
                             ],
-                          ),
-                  ),
-                  AppDimens.medium.height,
-                  SizedBox(
-                    height: 330,
-                    child: Obx(
-                      () => ListView.builder(
-                        itemBuilder: (context, index) {
-                          var list = homeController.productList;
-                          return index == 0
-                              ? VerticalText(
-                                  title: AppStrings.amazing,
-                                  onTap: () {},
-                                )
-                              : ProductItem(
-                                  index: index - 1,
-                                  title: list[index - 1].title!,
-                                  price: int.parse(list[index - 1].price!),
-                                  discount: 20,
-                                  oldPrice: int.parse(list[index - 1].price!),
-                                  time: 2000,
-                                  onTap: () {
-                                    ProductSingleController
-                                        productSingleController =
-                                        Get.put(ProductSingleController());
-                                    productSingleController.productId.value =
-                                        list[index - 1].id!;
-                                    productSingleController
-                                        .getProductComments();
-                                    productSingleController.getProduct();
-                                  },
-                                );
-                        },
-                        itemCount: homeController.productList.length - 5,
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                  ),
-                  AppDimens.medium.height,
-                  SizedBox(
-                    height: 285,
-                    child: Obx(
-                      () => ListView.builder(
-                        itemBuilder: (context, index) {
-                          var list = homeController.productList;
-                          return index == 0
-                              ? VerticalText(
-                                  title: 'پر فروش ترین ها',
-                                  onTap: () {
-                                 
-                                  },
-                                )
-                              : ProductItem(
-                                  index: index - 1,
-                                  title: list[index - 1].title!,
-                                  price: int.parse(list[index - 1].price!),
-                                  onTap: () {
-                                    ProductSingleController
-                                        productSingleController =
-                                        Get.put(ProductSingleController());
-                                    productSingleController.productId.value =
-                                        list[index - 1].id!;
-                                    productSingleController
-                                        .getProductComments();
-                                    productSingleController.getProduct();
-                                  },
-                                );
-                        },
-                        itemCount: homeController.productList.length - 5,
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                  ),
-                  AppDimens.high.height,
-                  SizedBox(
-                    height: 100,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [
-                            ImageIcon(
-                              AppIcons.timeTwentyFour,
-                              color: LightColors.primary,
-                            ),
-                            AppDimens.small.height,
-                            Text(
-                              'پشتیبانی آنلاین',
-                              style:
-                                  LightTextStyles.normal16(LightColors.primary),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            ImageIcon(
-                              AppIcons.truckSide,
-                              color: LightColors.primary,
-                            ),
-                            AppDimens.small.height,
-                            Text(
-                              'ارسال رایگان',
-                              style:
-                                  LightTextStyles.normal16(LightColors.primary),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            ImageIcon(
-                              AppIcons.dollar,
-                              color: LightColors.primary,
-                            ),
-                            AppDimens.small.height,
-                            Text(
-                              'بازگشت وجه',
-                              style:
-                                  LightTextStyles.normal16(LightColors.primary),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            ImageIcon(
-                              AppIcons.shieldCheck,
-                              color: LightColors.primary,
-                            ),
-                            AppDimens.small.height,
-                            Text(
-                              'پرداخت امن',
-                              style:
-                                  LightTextStyles.normal16(LightColors.primary),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  (AppDimens.high * 5).height
-                ],
-              ),
-            ),
-    );
+                          );
   }
-
   categoryTap(int index) {
     ProductListController controller = Get.put(ProductListController());
     controller.titleAppBar(

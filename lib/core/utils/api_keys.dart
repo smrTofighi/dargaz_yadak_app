@@ -29,6 +29,7 @@ class ApiKeys {
   static const String productResponse = 'product_response';
   static const String numberOfPage = 'number_of_page';
   static const String low = 'low';
+  static const String productsResult = 'products_result';
   static const String high = 'high';
   static const String products = 'products';
   static const String product = 'product';

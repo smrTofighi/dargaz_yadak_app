@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_soare_parts_app/core/styles/box_decoration.dart';
 import 'package:car_soare_parts_app/core/styles/text_styles.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/core/values/icons.dart';
+import 'package:car_soare_parts_app/modules/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:car_soare_parts_app/core/utils/extensions.dart';
@@ -38,17 +40,27 @@ class ProductListItem extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(
-                    AppDimens.high * 2.2,
+                    padding: const EdgeInsets.all(
+                      AppDimens.high * 2.2,
+                    ),
+                    decoration: AppBoxDecoration.imageOfProductItemWidget,
+                    width: AppDimens.infinity,
+                    height: AppDimens.sizeOfDevice(context).height * 0.18,
+                  child: CachedNetworkImage(
+                    imageUrl: image,
+                    imageBuilder: (context, imageProvider) => 
+                       Image(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    
+                    placeholder: (context, url) =>
+                        const LoadingWidget(color: LightColors.primary, size: 30),
+                    errorWidget: (context, url, error) => const Center(
+                      child: Text('error'),
+                    ),
                   ),
-                  decoration: AppBoxDecoration.imageOfProductItemWidget,
-                  width: AppDimens.infinity,
-                  height: AppDimens.sizeOfDevice(context).height * 0.18,
-                  child: ImageIcon(
-                    AppIcons.cloudDisabled,
-                    color: LightColors.primary,
-                  ),
-                ),
+                )
                 // Positioned(
                 //   top: 6,
                 //   left: 6,

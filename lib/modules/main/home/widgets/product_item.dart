@@ -1,41 +1,31 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:car_soare_parts_app/core/styles/text_styles.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
 import 'package:car_soare_parts_app/gen/assets.gen.dart';
+import 'package:car_soare_parts_app/modules/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:car_soare_parts_app/core/utils/extensions.dart';
 
 class ProductItem extends StatelessWidget {
-  ProductItem({
+  const ProductItem({
     Key? key,
     required this.title,
     required this.price,
     this.oldPrice = 0,
     this.discount = 0,
     this.time = 0,
-    required this.onTap, required this.index,
+    required this.onTap,
+     required this.image,
   }) : super(key: key);
   final String title;
-  final int index;
   final int price;
   final int oldPrice;
   final int discount;
   final int time;
+  final String image;
   final Function() onTap;
-  final List images = [
-    Assets.images.fp1.path,
-    Assets.images.fp2.path,
-    Assets.images.fp3.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-    Assets.images.fp4.path,
-  ];
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -57,10 +47,16 @@ class ProductItem extends StatelessWidget {
             Container(
               width: 180,
               height: 150,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: Image.asset(images[index]).image,
+              child: CachedNetworkImage(
+                imageUrl: image,
+                imageBuilder: (context, imageProvider) => Image(
+                  image: imageProvider,
                   fit: BoxFit.cover,
+                ),
+                placeholder: (context, url) =>
+                    const LoadingWidget(color: LightColors.primary, size: 30),
+                errorWidget: (context, url, error) => const Center(
+                  child: Text('error'),
                 ),
               ),
             ),
