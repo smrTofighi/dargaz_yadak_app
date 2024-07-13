@@ -7,8 +7,8 @@ class ProductModel {
     String? price;
     String? discount;
     String? weight;
-    dynamic? brand;
-    dynamic? timeDelivery;
+    dynamic brand;
+    dynamic timeDelivery;
     String? userId;
     String? metaKeywords;
     String? metaDescription;
@@ -30,7 +30,7 @@ class ProductModel {
     String? wholesaleCount;
     String? image;
     String? newPrice;
-    dynamic? oldPrice;
+    dynamic oldPrice;
 
     ProductModel({
           this.id,
@@ -76,15 +76,15 @@ class ProductModel {
         price: json["price"],
         discount: json["discount"],
         weight: json["weight"],
-        brand: json["brand"],
-        timeDelivery: json["time_delivery"],
+        brand: json["brand"] ?? '',
+        timeDelivery: json["time_delivery"]?? '',
         userId: json["user_id"],
-        metaKeywords: json["meta_keywords"],
-        metaDescription: json["meta_description"],
-        fullDescription: json["full_description"],
+        metaKeywords: json["meta_keywords"]?? '',
+        metaDescription: json["meta_description"]?? '',
+        fullDescription: json["full_description"]?? '',
         status: json["status"],
         comment: json["comment"],
-        abstractDescription: json["abstract_description"],
+        abstractDescription: json["abstract_description"]?? '',
         minOrder: json["min_order"],
         maxOrder: json["max_order"],
         quantity: json["quantity"],

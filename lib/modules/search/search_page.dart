@@ -48,6 +48,14 @@ class SearchPage extends StatelessWidget {
               child: SearchBox(
                 controller: searchController.searchTextController,
                 isEnabled: true,
+                onChanged: () {
+                  if (searchController.searchTextController.text == '') {
+                   // searchValidate(true);
+                  } else {
+                   // searchValidate(false);
+                    searchController.searchProduct();
+                  }
+                },
                 onTap: () {},
                 searchValidate: searchValidate,
                 onTapIcon: () {

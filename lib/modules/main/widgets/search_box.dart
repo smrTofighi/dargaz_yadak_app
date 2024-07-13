@@ -10,13 +10,14 @@ class SearchBox extends StatelessWidget {
     required this.isEnabled,
     required this.onTap,
     this.controller,
-    required this.searchValidate, required this.onTapIcon,
+    required this.searchValidate, required this.onTapIcon, required this.onChanged,
   });
   final TextEditingController? controller;
   final bool isEnabled;
   final Function() onTap;
   final RxBool searchValidate;
   final Function() onTapIcon;
+  final Function() onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class SearchBox extends StatelessWidget {
           ()=> TextField(
             controller: controller,
             enabled: isEnabled,
+            onChanged: onChanged(),
             decoration: InputDecoration(
               suffixIcon: IconButton(
                 onPressed: onTapIcon,

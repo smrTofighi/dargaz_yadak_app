@@ -17,9 +17,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProductSingleController extends GetxController {
-    final TextEditingController commentController = TextEditingController();
+  final TextEditingController commentController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-    final RxBool commentValidate = false.obs;
+  final RxBool commentValidate = false.obs;
   final RxBool emailValidate = false.obs;
   final RxBool isEmail2 = RxBool(true);
   Rx<ProductModel> productModel = ProductModel().obs;
@@ -50,8 +50,6 @@ class ProductSingleController extends GetxController {
     }
   }
 
- 
-
   getProduct() async {
     loading.value = true;
     String url = ApiConstant.getProductApi;
@@ -60,9 +58,15 @@ class ProductSingleController extends GetxController {
       ApiKeys.productId: productId.value.toString()
     };
     var response = await DioService().postMethod(url, map);
+    log(response.data.toString());
     if (response.data[ApiKeys.status] == 1) {
       productModel.value =
           ProductModel.fromJson(response.data[ApiKeys.product]);
+      productModel.update(
+        (val) {
+          
+        },
+      );
       imageModel.value = ImageModel.fromJson(response.data[ApiKeys.indexImage]);
       //  categoryModel.value = CategoryModel.fromJson(
       //      response.data[ApiKeys.product][ApiKeys.category]);
@@ -71,7 +75,7 @@ class ProductSingleController extends GetxController {
     loading.value = false;
   }
 
-  addCommentProduct(String email, String comment,context) async {
+  addCommentProduct(String email, String comment, context) async {
     Get.back();
     AppDialogs.loadingDialog();
     String url = ApiConstant.submitProductComment;

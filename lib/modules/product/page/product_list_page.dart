@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:car_soare_parts_app/core/styles/text_styles.dart';
 import 'package:car_soare_parts_app/core/values/colors.dart';
 import 'package:car_soare_parts_app/core/values/dimens.dart';
@@ -146,7 +148,8 @@ class _ProductListPageState extends State<ProductListPage> {
                                         var price = productListController
                                             .productList[index].price!;
                                         RxBool isLiked = true.obs;
-                                        var image = productListController.productList[index].image!;
+                                        var image = productListController
+                                            .productList[index].image!;
                                         //? that widget was return
                                         return ProductListItem(
                                             title: title,
@@ -160,7 +163,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                               controller.productId.value =
                                                   productListController
                                                       .productList[index].id!;
-
+                                              log(productListController
+                                                  .productList[index].id!
+                                                  .toString());
                                               controller.getProduct();
                                               controller.getProductComments();
                                             },

@@ -27,7 +27,7 @@ class BtmNavProduct extends StatelessWidget {
           SizedBox(
             width: AppDimens.sizeOfDevice(context).width / 2.2,
             height: 45,
-            child: int.parse(controller.productModel.value.discount!) < 1
+            child: int.parse(controller.productModel.value.quantity!) == 0
                 ? Center(
                     child: const Text(
                       'عدم موجودی کافی',

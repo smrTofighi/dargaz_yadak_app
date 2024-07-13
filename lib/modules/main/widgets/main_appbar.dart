@@ -19,6 +19,9 @@ class MainAppBar extends StatelessWidget {
       bottom:  PreferredSize(
         preferredSize: const Size.fromHeight(40),
         child: SearchBox(
+          onChanged: () {
+            
+          },
           searchValidate: searchValidate,
           isEnabled: false,
           onTap: (){

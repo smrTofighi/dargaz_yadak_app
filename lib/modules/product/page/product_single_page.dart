@@ -115,7 +115,7 @@ class ProductSinglePage extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  AppStrings.test,
+                                  productController.productModel.value.metaDescription!,
                                   style: LightTextStyles.normal14(
                                       LightColors.blackText),
                                 ),
